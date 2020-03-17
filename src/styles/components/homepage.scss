@@ -30,10 +30,24 @@ body {
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
+  overflow: hidden;
 
+  &:hover {
+    cursor: pointer;
 
-  &.large {
-    height: 380px;
+    & .background-image {
+      transform: scale(1.4);
+      transition: transform 6s cubic-bezier(0.35, 0.5, 0.5, 1.0);
+    }
+
+    & .content {
+      opacity: .7;
+    }
+
+  }
+
+  & .large {
+    height: 300px;
   }
 
 
@@ -53,6 +67,7 @@ body {
     border: 1px solid black;
     background-color: white;
     opacity: .65;
+    position: absolute;
     .title {
       font-weight: bold;
       margin-bottom: 6px;
