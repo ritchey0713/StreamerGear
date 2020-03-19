@@ -9,6 +9,22 @@ class SignIn extends Component {
     }
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState({
+      email: "",
+      password: ""
+    })
+  }
+
+  handleChange = (e) => {
+    const {value, name } = e.target
+    this.setState({
+      [name]: value
+    })
+
+  }
+
   render(){
     return (
       <div className="sign-in">  
@@ -16,10 +32,22 @@ class SignIn extends Component {
         <span>Please sign in using your email address and password</span>
 
         <form>
-          <input name="email" type="email" value={this.state.email} required />
+          <input 
+            name="email" 
+            type="email" 
+            value={this.state.email} 
+            required 
+            onChange={this.handleChange}
+          />
           <label>Email</label>
 
-          <input name="password" type="password" value={this.state.password} required />
+          <input 
+            name="password" 
+            type="password" 
+            value={this.state.password} 
+            required 
+            onChange={this.handleChange}
+          />
           <label>Password</label>
 
           <input type="submit" value="submit" />
@@ -28,3 +56,5 @@ class SignIn extends Component {
     )
   }
 }
+
+export default SignIn
