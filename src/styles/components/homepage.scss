@@ -3,6 +3,10 @@ body {
   padding: 30px 70px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -160,6 +164,7 @@ a {
 
 .option {
   padding: 15px 20px;
+  cursor: pointer;
 }
 
 $sub-color: gray;
@@ -218,7 +223,7 @@ $main-color: black;
 }
 
 .sign-in {
-  width: 30vw;
+  width: 380px;
   display: flex;
   flex-direction: column;
 
@@ -248,4 +253,19 @@ $main-color: black;
     color: black;
     border: 1px solid black;
   }
+
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+
+    &:hover {
+      background-color: #357ae8;
+      border: none;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
