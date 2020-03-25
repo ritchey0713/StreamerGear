@@ -5,32 +5,27 @@ import { Switch, Route } from 'react-router-dom';
 import Header from "./components/header/Header"
 import SignInLogIn from "./pages/signin-login/SignInLogIn"
 import { auth, createUserProfileDocument } from "./firebase/firebase"
+import { connect } from 'react-redux'
+import { setCurrentUser } from "./redux/user/userActions"
 
 class App extends Component {
-  constructor(){
-    super()
-
-    this.state = {
-      currentUser: null
-    }
-  }
 
   componentDidMount(){
+    const { setCurrentUser } = this.props
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
 
         userRef.onSnapshot(snapshot => (
-          this.setState({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data()
-            }
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
           })
         ))
       }
       // set user to null when sign out
-      this.setState({ currentUser: userAuth })
+      setCurrentUser(userAuth)
     })
   }
 
@@ -52,4 +47,9 @@ class App extends Component {
   }
 }
 
-export default App;
+
+
+export default connect(undefined,
+  {
+    setCurrentUser
+  })(App);
