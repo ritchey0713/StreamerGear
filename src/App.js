@@ -7,6 +7,9 @@ import SignInLogInPage from "./pages/signin-login/SignInLogIn"
 import { auth, createUserProfileDocument } from "./firebase/firebase"
 import { connect } from 'react-redux'
 import { setCurrentUser } from "./redux/user/userActions"
+import { selectCurrentUser } from "./redux/user/userSelectors"
+// use if more than one prop is being set in mapstate to props, also no need to pass state to each one
+import { createStructuredSelector } from 'reselect'
 
 class App extends Component {
 
@@ -51,11 +54,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ user }, ownProps) => {
-  return {
-    currentUser: user.currentUser
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+})
 
 
 export default connect(mapStateToProps,
