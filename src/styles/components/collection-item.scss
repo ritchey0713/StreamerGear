@@ -36,6 +36,9 @@
       opacity: .8;
     }
 
+    .items-button{
+      display: flex;
+    }
   }
   
   .items-button {
@@ -43,6 +46,6 @@
     opacity: .8;
     position: absolute;
     top: 255px;
-    display: flex;
+    display: none;
   }
 }
