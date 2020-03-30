@@ -32,14 +32,17 @@
   }
 
   &:hover {
-    .iamge {
+    .image {
       opacity: .8;
     }
 
-    .items-button {
-      opacity: .8;
-      display: flex;
-    }
   }
-
+  
+  .items-button {
+    width: 80%;
+    opacity: .8;
+    position: absolute;
+    top: 255px;
+    display: flex;
+  }
 }
