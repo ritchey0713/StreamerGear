@@ -10,6 +10,7 @@ import { setCurrentUser } from "./redux/user/userActions"
 import { selectCurrentUser } from "./redux/user/userSelectors"
 // use if more than one prop is being set in mapstate to props, also no need to pass state to each one
 import { createStructuredSelector } from 'reselect'
+import CartCheckoutPage from './components/cart-checkout/cartCheckout';
 
 class App extends Component {
 
@@ -48,6 +49,7 @@ class App extends Component {
               (<Redirect to="/" />) : 
               <SignInLogInPage />
               } />
+          <Route exact path="/checkout" component={CartCheckoutPage} />
         </Switch>
       </div>
     );
