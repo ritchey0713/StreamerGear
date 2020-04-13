@@ -7,10 +7,6 @@ import { Provider } from 'react-redux'
 import { store, persistor } from "./redux/store"
 
 import { PersistGate } from 'redux-persist/integration/react'
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js'
-
-
 
 ReactDOM.render(
   <Provider store={store}>
