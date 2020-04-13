@@ -14,7 +14,6 @@ const CollectionsOverview = ({ shop }) => (
   </div>
 )
 
-
 const mapStateToProps = createStructuredSelector({
   shop: selectCollectionsForPreview
 })
