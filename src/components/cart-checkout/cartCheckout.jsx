@@ -5,43 +5,53 @@ import { selectCartItems, selectCartTotal } from "../../redux/cart/cartSelectors
 import CheckoutItem from "../checkout-item/checkout-item"
 import StripeCheckoutButton from "../stripe-button/StripeButton"
 
+import { CheckoutHeaderContainer, CheckoutPageContainer, HeaderBlockContainer, TotalContainer, TestWarningContainer } from "./cartCheckout.styles"
+
 const CartCheckoutPage = ({cartItems, total, stripe}) => {
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className='header-block'>
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+
+        <HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className='header-block'>
+        </HeaderBlockContainer>
+
+        <HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className='header-block'>
+        </HeaderBlockContainer>
+
+        <HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className='header-block'>
+        </HeaderBlockContainer>
+
+        <HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className='header-block'>
+        </HeaderBlockContainer>
+
+        <HeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlockContainer>
+
+      </CheckoutHeaderContainer>
       {
         cartItems.map(item =>
           <CheckoutItem cartItem={item} key={item.id}/>
         )
       }
 
-      <div className="total">
+      <TotalContainer>
         <span>TOTAL: ${total}</span>
-      </div>
-      <div className="test-warning">
+      </TotalContainer>
+      <TestWarningContainer>
         * Please use following test credit card info *
         <br />
         Card Number: 4242 4242 4242 4242 - ex: 01/21 CVV: 123
         <br />
-      </div>
+      </TestWarningContainer>
+
         <StripeCheckoutButton price={total}/>
-    </div>
+        
+    </CheckoutPageContainer>
   )
 }
 
