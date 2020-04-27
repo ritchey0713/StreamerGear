@@ -32,15 +32,16 @@ const invertedButtonStyles = css`
 const googleSigninStyles = css`
  background-color: #4285f4;
   color: white;
-
+  border: none;
   &:hover {
-    background-color: #357ae8;
-    border: none;
+    background-color: white;
+    color: #4285f4;
+    border: 1px solid #4285f4;
   }
 `
 
 const getButtonStyles = props => {
-  if(props.googleSignIn) {
+  if(props.isGoogleSignIn) {
     return googleSigninStyles
   }
 
