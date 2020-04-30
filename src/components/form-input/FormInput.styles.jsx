@@ -5,6 +5,15 @@ top: -14px;
 font-size: 12px;
 `
 
+//doesnt work
+// const shrinkStyles = css`
+//   @include shrinkLabel()
+// `
+
+const getShrinkStyles = props => {
+  return props.value.length ? shrinkStyles : ""
+}
+
 export const GroupContainer = styled.div`
   position: relative;
   margin: 45px 0;
@@ -46,7 +55,5 @@ left: 5px;
 top: 10px;
 transition: 300ms ease all;
 
-&.shrink{
-  ${shrinkStyles}
-}
+${getShrinkStyles}
 `
