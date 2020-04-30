@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 import { selectDirectorySections } from "../../redux/directory/directorySelectors"
-import MenuItem from "../menuItem"
+import MenuItem from "../menu-item/menuItem"
 import { DirectoryMenuContainer } from "./Directory.styles"
 
 const Directory = ({ sections }) => (
