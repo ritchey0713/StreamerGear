@@ -1,8 +1,9 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-const getLabelStyles = props => {
-  return props.value.length ? "@include shrinkLabel();" : ""
-}
+const shrinkStyles = css`
+top: -14px;
+font-size: 12px;
+`
 
 export const GroupContainer = styled.div`
   position: relative;
@@ -27,7 +28,7 @@ export const InputContainer = styled.input`
   }
     
   &:focus ~ .form-input-label{
-    @include shrinkLabel();
+    ${shrinkStyles}
   }
   
   input[type="password"] {
@@ -36,13 +37,16 @@ export const InputContainer = styled.input`
 `
 
 export const LabelContainer = styled.label`
-  color: $sub-color;
-  font-size: 16px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 300ms ease all;
-  ${getLabelStyles}
+color: $sub-color;
+font-size: 16px;
+font-weight: normal;
+position: absolute;
+pointer-events: none;
+left: 5px;
+top: 10px;
+transition: 300ms ease all;
+
+&.shrink{
+  ${shrinkStyles}
+}
 `
