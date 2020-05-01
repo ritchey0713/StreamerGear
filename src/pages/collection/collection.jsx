@@ -7,7 +7,7 @@ import CollectionItem from "../../components/collection-item/collection-item"
 const CollectionPage = ({ match, collection }) => {
   const { title, items } = collection
   return(
-  <div className="category">
+  <div>
     <h2 className="title">{ title }</h2>
     <div className="items">
       {
