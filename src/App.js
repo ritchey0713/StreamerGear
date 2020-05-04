@@ -11,7 +11,8 @@ import { selectCurrentUser } from "./redux/user/userSelectors"
 // allows redux to cache no longer query every page load
 import { createStructuredSelector } from 'reselect'
 import CartCheckoutPage from './components/cart-checkout/cartCheckout';
-import { selectCollectionsForPreview } from "./redux/shop/shopSelectors"
+// grab collection to get data to seed to firebase
+//import { selectCollectionsForPreview } from "./redux/shop/shopSelectors"
 
 class App extends Component {
 
@@ -32,7 +33,8 @@ class App extends Component {
         }
         // set user to null when sign out
         setCurrentUser(userAuth)
-        addCollectionAndDocuments("collections", collectionsArray)
+        // seed data from the static shop data file
+        //addCollectionAndDocuments("collections", collectionsArray.map(({title, items}) => ({ title, items}) ))
     })
   }
 
@@ -63,7 +65,7 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 
   //add shop data to firebase
-  collectionsArray: selectCollectionsForPreview
+  //collectionsArray: selectCollectionsForPreview
 })
 
 
