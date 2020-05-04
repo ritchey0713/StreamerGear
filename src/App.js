@@ -4,18 +4,19 @@ import ShopPage from "./pages/shop/shop"
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from "./components/header/Header"
 import SignInLogInPage from "./pages/signin-login/SignInLogIn"
-import { auth, createUserProfileDocument } from "./firebase/firebase"
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from "./firebase/firebase"
 import { connect } from 'react-redux'
 import { setCurrentUser } from "./redux/user/userActions"
 import { selectCurrentUser } from "./redux/user/userSelectors"
-// use if more than one prop is being set in mapstate to props, also no need to pass state to each one
+// allows redux to cache no longer query every page load
 import { createStructuredSelector } from 'reselect'
 import CartCheckoutPage from './components/cart-checkout/cartCheckout';
+import { selectCollectionsForPreview } from "./redux/shop/shopSelectors"
 
 class App extends Component {
 
   componentDidMount(){
-    const { setCurrentUser } = this.props
+    const { setCurrentUser, collectionsArray } = this.props
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth) {
@@ -26,10 +27,12 @@ class App extends Component {
             id: snapshot.id,
             ...snapshot.data()
           })
-        ))
-      }
-      // set user to null when sign out
-      setCurrentUser(userAuth)
+
+          ))
+        }
+        // set user to null when sign out
+        setCurrentUser(userAuth)
+        addCollectionAndDocuments("collections", collectionsArray)
     })
   }
 
@@ -57,7 +60,10 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+
+  //add shop data to firebase
+  collectionsArray: selectCollectionsForPreview
 })
 
 
