@@ -36,9 +36,18 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef
 }
 
-export const addCollectionAndDocuments = (collectionKey, objsToAdd) => {
+export const addCollectionAndDocuments = async (collectionKey, objsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
   console.log(collectionRef)
+
+  // create one large request, makes sure if something like internet failure we dont save only half our objs
+  const batch = firestore.batch()
+  objsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc()
+    batch.set(newDocRef, obj)
+  })
+
+  return await batch.commit()
 }
 
 export default firebase
