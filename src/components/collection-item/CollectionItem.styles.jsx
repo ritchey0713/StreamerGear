@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CollectionItem = styled.div`
+export const CollectionItemContainer = styled.div`
 width: 22vw;
 display: flex;
 flex-direction: column;
@@ -16,6 +16,7 @@ export const ImageContainer = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: 7px;
+  background-image: ${({ imageUrl }) => (`url(${imageUrl})`)};
 `
 
 export const CollectionFooterContainer = styled.div`
@@ -25,5 +26,6 @@ export const CollectionFooterContainer = styled.div`
   justify-content: space-between;
   font-size: 20px;
 `
-export const NameCollection = styled.span`
+export const InfoCollection = styled.span`
+  margin: 7px;
 `
