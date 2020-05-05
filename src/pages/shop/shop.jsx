@@ -2,18 +2,23 @@
 // match comes from react-router 
 import React, { Component } from 'react'
 import { Route } from "react-router-dom"
+import { connect } from "react-redux"
 import CollectionsOverview from '../../components/collections-overview/CollectionsOverview'
 import CollectionPage from "../collection/collection"
 import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase" 
+import { updateCollections } from "../../redux/shop/shopActions"
 
 class ShopPage extends Component {
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
+    const { updateCollections } = this.props
     const collectionRef = firestore.collection("collections")
 
     collectionRef.onSnapshot(async snapshot => {
-      convertCollectionsSnapshotToMap(snapshot)
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
+      // console.log(collectionsMap, "MAP")
+      updateCollections(collectionsMap)
     })
   }
   render(){
@@ -29,4 +34,6 @@ class ShopPage extends Component {
 } 
 
 
-export default ShopPage
+export default connect(undefined, {
+  updateCollections
+})(ShopPage)
