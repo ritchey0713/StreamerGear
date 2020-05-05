@@ -50,4 +50,24 @@ export const addCollectionAndDocuments = async (collectionKey, objsToAdd) => {
   return await batch.commit()
 }
 
+export const convertCollectionsSnapshotToMap = (collections) => {
+
+  // access nested array by calling docs on a passed in collection, a snapshot
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data()
+
+    return {
+      routeName: encodeURI(title.toLocaleLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+  })
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection
+    return accumulator
+  }, {})
+}
+
 export default firebase
