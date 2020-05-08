@@ -20,15 +20,30 @@ class ShopPage extends Component {
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
+    // const { updateCollections } = this.props
+    // const collectionRef = firestore.collection("collections")
+
+    // collectionRef.onSnapshot(async snapshot => {
+    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
+    //   // console.log(collectionsMap, "MAP")
+    //   updateCollections(collectionsMap)
+    //   this.setState({loading: false})
+    // })
+
     const { updateCollections } = this.props
     const collectionRef = firestore.collection("collections")
 
-    collectionRef.onSnapshot(async snapshot => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
-      // console.log(collectionsMap, "MAP")
-      updateCollections(collectionsMap)
-      this.setState({loading: false})
-    })
+    collectionRef.get().then(async snapshot => {
+        const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
+        updateCollections(collectionsMap)
+        this.setState({loading: false})
+      })
+
+      // fetch("https://firestore.googleapis.com/v1/projects/streamshop-db/databases/(default)/documents/collections")
+      //   .then(resp => resp.json())
+      //   .then(data => console.log(data, "HELLLLOOO"))
+
+    
   }
   render(){
     const { match } = this.props
