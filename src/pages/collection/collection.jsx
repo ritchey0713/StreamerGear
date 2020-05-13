@@ -23,6 +23,7 @@ const CollectionPage = ({ match, collection }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  // state here refers to redux store
   // if passing data to func in a selector, must also pass state in secondary call
   return {
     collection: selectCollection(ownProps.match.params.collectionId)(state)
