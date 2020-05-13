@@ -17,13 +17,17 @@ export const selectCollectionsForPreview = createSelector(
 )
 
 // export function, taking in external data to get proper collection 
-export const selectCollection = collectionUrlParam => (
-  createSelector(
+export const selectCollection = collectionUrlParam => {
+  return createSelector(
     [selectShopItems],
     // collections => collections.find(collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam])
-    items => items ? items[collectionUrlParam] : null
+    items => {
+     return items ? items[collectionUrlParam] : null
+    }
   )
-)
+
+}
+
 
 export const selectIsCollectionFetching = createSelector(
   [selectShop],
