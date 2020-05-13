@@ -40,18 +40,19 @@ class ShopPage extends Component {
 
       const { fetchCollectionsStartAsync } = this.props
       fetchCollectionsStartAsync()
+    }
     
-  }
-
-  render(){
-    const { match, isCollectionFetching, isCollectionLoaded } = this.props
+    render(){
+      const { match, isCollectionFetching, isCollectionLoaded } = this.props
     return (
       <div className='shop-page'>
         <Route exact path={`${match.path}`} 
+        // if this have no items found it wont show anything but wont break
           render={(props) => <CollectionOverviewWithSpinner isLoading={isCollectionFetching} {...props}/>} 
         />
         <Route path={`${match.path}/:collectionId`} 
-          render={(props) => <CollectionsPageWithSpinner isLoading={isCollectionFetching} {...props}/>}
+        // need isLoading to work differently, need it to have all the shop data before rendering, that page gets its data by finding things by a url
+          render={(props) => <CollectionsPageWithSpinner isLoading={!isCollectionLoaded} {...props}/>}
         />
       </div>
 
