@@ -17,6 +17,7 @@ export const selectCollectionsForPreview = createSelector(
 )
 
 // export function, taking in external data to get proper collection 
+// when passing outside args you must pass state inside of the mapstatetoprops call
 export const selectCollection = collectionUrlParam => {
   return createSelector(
     [selectShopItems],
@@ -36,6 +37,6 @@ export const selectIsCollectionFetching = createSelector(
 
 export const selectIsCollectionLoaded = createSelector(
   [selectShop],
-  shop => !!shop.items
+  shop => !shop.items
 )
   
