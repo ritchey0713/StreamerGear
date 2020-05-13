@@ -4,14 +4,14 @@ import React, { Component } from 'react'
 import { Route } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from 'reselect'
-import { selectIsCollectionFetching, selectIsCollectionLoaded } from '../../redux/shop/shopSelectors'
-import CollectionsOverview from '../../components/collections-overview/CollectionsOverview'
-import CollectionPage from "../collection/collection"
+
+import CollectionsOverviewContainer from '../../components/collections-overview/CollectionsOverviewContainer'
+import CollectionPageContainer from "../collection/CollectionContainer"
 import { fetchCollectionsStartAsync } from "../../redux/shop/shopActions"
 import WithSpinner from "../../components/with-spinner/WithSpinner"
 
-const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview)
-const CollectionsPageWithSpinner = WithSpinner(CollectionPage)
+//const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview)
+//const CollectionsPageWithSpinner = WithSpinner(CollectionPage)
 
 class ShopPage extends Component {
   componentDidMount() {
@@ -47,12 +47,14 @@ class ShopPage extends Component {
     return (
       <div className='shop-page'>
         <Route exact path={`${match.path}`} 
-        // if this have no items found it wont show anything but wont break
-          render={(props) => <CollectionOverviewWithSpinner isLoading={isCollectionFetching} {...props}/>} 
+        
+          //render={(props) => <CollectionOverviewWithSpinner isLoading={isCollectionFetching} {...props}/>}
+          component={CollectionsOverviewContainer} 
         />
         <Route path={`${match.path}/:collectionId`} 
-        // need isLoading to work differently, need it to have all the shop data before rendering, that page gets its data by finding things by a url
-          render={(props) => <CollectionsPageWithSpinner isLoading={!isCollectionLoaded} {...props}/>}
+        
+          //render={(props) => <CollectionsPageWithSpinner isLoading={!isCollectionLoaded} {...props}/>}
+          component={CollectionPageContainer}
         />
       </div>
 
@@ -61,8 +63,11 @@ class ShopPage extends Component {
 } 
 
 const mapStateToProps = createStructuredSelector({
-  isCollectionFetching: selectIsCollectionFetching,
-  isCollectionLoaded: selectIsCollectionLoaded
+  // if this have no items found it wont show anything but wont break
+  // moved to collection container file
+  //isCollectionFetching: selectIsCollectionFetching,
+  // need isLoading to work differently, have to pass state in the mapstatetoprops from the collections comp here,  need it to have all the shop data before rendering, that page gets its data by finding things by a url
+  //isCollectionLoaded: selectIsCollectionLoaded
 })
 
 export default connect(mapStateToProps, {
