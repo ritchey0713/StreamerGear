@@ -4,7 +4,11 @@ const selectShop = state => state.shop
 
 export const selectShopItems = createSelector(
   [selectShop],
-  shop => shop.items
+  shop => {
+    // we get .items from shop, which is reducer state
+    console.log(shop, "SHOPPPYYY")
+    return shop.items
+  }
 )
 
 export const selectCollectionsForPreview = createSelector(
@@ -19,5 +23,15 @@ export const selectCollection = collectionUrlParam => (
     // collections => collections.find(collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam])
     items => items ? items[collectionUrlParam] : null
   )
+)
+
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+)
+
+export const selectIsCollectionLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
 )
   
