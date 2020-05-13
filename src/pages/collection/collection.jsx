@@ -22,9 +22,11 @@ const CollectionPage = ({ match, collection }) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
   // if passing data to func in a selector, must also pass state in secondary call
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
-})
+  return {
+    collection: selectCollection(ownProps.match.params.collectionId)(state)
+  }
+}
 
 export default connect(mapStateToProps)(CollectionPage)
