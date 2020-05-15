@@ -1,3 +1,5 @@
+//wrapper for the overview component with spinner component gets loaded first
+
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { createStructuredSelector } from "reselect"

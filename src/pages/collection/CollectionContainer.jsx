@@ -1,3 +1,5 @@
+//wrapper for the collection component with spinner component gets loaded first
+
 import{ connect } from 'react-redux'
 import { compose } from "redux"
 import { createStructuredSelector } from 'reselect'
@@ -6,7 +8,7 @@ import WithSpinner from "../../components/with-spinner/WithSpinner"
 import Collection from "./collection"
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: (state) => !selectIsCollectionLoaded(state)
+  isLoading: selectIsCollectionLoaded
 })
 
 const CollectionPageContainer = compose(
