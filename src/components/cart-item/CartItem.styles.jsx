@@ -16,14 +16,13 @@ export const ItemDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  margin: 10px;
+  
+  padding-left: 10px;
 `
 
 export const ItemNameContainer = styled.span`
-  font-size: 16px;
+  font-size: 18px;
 `
 export const ItemPriceContainer = styled.span`
-  width: 23%;
-  padding-left: 30px;
+font-size: 14px;
 `
