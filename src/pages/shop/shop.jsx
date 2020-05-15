@@ -8,7 +8,7 @@ import { createStructuredSelector } from 'reselect'
 import CollectionsOverviewContainer from '../../components/collections-overview/CollectionsOverviewContainer'
 import CollectionPageContainer from "../collection/CollectionContainer"
 import { fetchCollectionsStartAsync } from "../../redux/shop/shopActions"
-import WithSpinner from "../../components/with-spinner/WithSpinner"
+// import WithSpinner from "../../components/with-spinner/WithSpinner"
 
 //const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview)
 //const CollectionsPageWithSpinner = WithSpinner(CollectionPage)
@@ -52,7 +52,6 @@ class ShopPage extends Component {
           component={CollectionsOverviewContainer} 
         />
         <Route path={`${match.path}/:collectionId`} 
-        
           //render={(props) => <CollectionsPageWithSpinner isLoading={!isCollectionLoaded} {...props}/>}
           component={CollectionPageContainer}
         />
